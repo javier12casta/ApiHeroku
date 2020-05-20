@@ -6,8 +6,6 @@
     "node": "12.16.x"
   },
   "scripts": {
-    "build": "tsc -w",
-    "dev": "nodemon build/index.js",
     "start": "node build/index.js"
   },
   "keywords": [],
