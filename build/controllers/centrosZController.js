@@ -22,7 +22,7 @@ class CentrosZController {
     }
     list2(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const centro = yield database_1.default.query('SELECT * FROM CentrosZonales WHERE Estado = 1');
+            const centro = yield database_1.default.query('SELECT * FROM centroszonales WHERE Estado = 1');
             res.json(centro);
         });
     }
