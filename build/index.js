@@ -48,6 +48,15 @@ const trasladosRoutes_1 = __importDefault(require("./routes/trasladosRoutes"));
 const actaRoutes_1 = __importDefault(require("./routes/actaRoutes"));
 const cuposRoutes_1 = __importDefault(require("./routes/cuposRoutes"));
 const cargainventarioRoutes_1 = __importDefault(require("./routes/cargainventarioRoutes"));
+
+const options = {
+    allowedHeaders: ["Origin", "X-Requested-With", "Content-Type", "Accept", "X-Access-Token"],
+    credentials: true,
+    methods: "GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE",
+    origin: 'https://bienestarina.herokuapp.com/',
+    preflightContinue: false
+};
+
 class Server {
     constructor() {
         this.app = express_1.default();
