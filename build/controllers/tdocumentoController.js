@@ -16,14 +16,14 @@ const database_1 = __importDefault(require("../database"));
 class TdocumentoController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const TipoDocumento = yield database_1.default.query('SELECT * FROM TipoDocumento');
+            const TipoDocumento = yield database_1.default.query('SELECT * FROM tipodocumento');
             res.json(TipoDocumento);
         });
     }
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const games = yield database_1.default.query('SELECT * FROM TipoDocumento WHERE idTipoDocumento = ?', [id]);
+            const games = yield database_1.default.query('SELECT * FROM tipodocumento WHERE idTipoDocumento = ?', [id]);
             console.log(games.length);
             if (games.length > 0) {
                 return res.json(games[0]);
@@ -33,7 +33,7 @@ class TdocumentoController {
     }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const result = yield database_1.default.query('INSERT INTO TipoDocumento set ?', [req.body]);
+            const result = yield database_1.default.query('INSERT INTO tipodocumento set ?', [req.body]);
             res.json({ message: 'TipoDocumento Saved' });
         });
     }
@@ -41,14 +41,14 @@ class TdocumentoController {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
             const oldGame = req.body;
-            yield database_1.default.query('UPDATE TipoDocumento set ? WHERE idTipoDocumento = ?', [req.body, id]);
+            yield database_1.default.query('UPDATE tipodocumento set ? WHERE idTipoDocumento = ?', [req.body, id]);
             res.json({ message: "The TipoDocumento was Updated" });
         });
     }
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            yield database_1.default.query('DELETE FROM TipoDocumento WHERE idTipoDocumento = ?', [id]);
+            yield database_1.default.query('DELETE FROM tipodocumento WHERE idTipoDocumento = ?', [id]);
             res.json({ message: "The TipoDocumento was deleted" });
         });
     }

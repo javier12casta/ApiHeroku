@@ -16,14 +16,14 @@ const database_1 = __importDefault(require("../database"));
 class ComunasController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const comuna = yield database_1.default.query('SELECT * FROM Comunas');
+            const comuna = yield database_1.default.query('SELECT * FROM comunas');
             res.json(comuna);
         });
     }
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const games = yield database_1.default.query('SELECT * FROM Comunas WHERE idComunas = ?', [id]);
+            const games = yield database_1.default.query('SELECT * FROM comunas WHERE idComunas = ?', [id]);
             console.log(games.length);
             if (games.length > 0) {
                 return res.json(games[0]);
@@ -33,7 +33,7 @@ class ComunasController {
     }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const result = yield database_1.default.query('INSERT INTO Comunas set ?', [req.body]);
+            const result = yield database_1.default.query('INSERT INTO comunas set ?', [req.body]);
             res.json({ message: 'Comuna Saved' });
         });
     }
@@ -41,14 +41,14 @@ class ComunasController {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
             const oldGame = req.body;
-            yield database_1.default.query('UPDATE Comunas set ? WHERE idComunas = ?', [req.body, id]);
+            yield database_1.default.query('UPDATE comunas set ? WHERE idComunas = ?', [req.body, id]);
             res.json({ message: "The Comuna was Updated" });
         });
     }
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            yield database_1.default.query('DELETE FROM Comunas WHERE idComunas = ?', [id]);
+            yield database_1.default.query('DELETE FROM comunas WHERE idComunas = ?', [id]);
             res.json({ message: "The Comuna was deleted" });
         });
     }

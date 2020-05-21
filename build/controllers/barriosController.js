@@ -16,14 +16,14 @@ const database_1 = __importDefault(require("../database"));
 class BarriosController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const barrio = yield database_1.default.query('SELECT * FROM BarriosVeredas');
+            const barrio = yield database_1.default.query('SELECT * FROM barriosVeredas');
             res.json(barrio);
         });
     }
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const games = yield database_1.default.query('SELECT * FROM BarriosVeredas WHERE idBarriosVeredas = ?', [id]);
+            const games = yield database_1.default.query('SELECT * FROM barriosVeredas WHERE idBarriosVeredas = ?', [id]);
             console.log(games.length);
             if (games.length > 0) {
                 return res.json(games[0]);
@@ -33,7 +33,7 @@ class BarriosController {
     }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const result = yield database_1.default.query('INSERT INTO BarriosVeredas set ?', [req.body]);
+            const result = yield database_1.default.query('INSERT INTO barriosVeredas set ?', [req.body]);
             res.json({ message: 'Barrio Saved' });
         });
     }
@@ -41,14 +41,14 @@ class BarriosController {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
             const oldGame = req.body;
-            yield database_1.default.query('UPDATE BarriosVeredas set ? WHERE idBarriosVeredas = ?', [req.body, id]);
+            yield database_1.default.query('UPDATE barriosVeredas set ? WHERE idBarriosVeredas = ?', [req.body, id]);
             res.json({ message: "The barrio was Updated" });
         });
     }
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            yield database_1.default.query('DELETE FROM BarriosVeredas WHERE idBarriosVeredas = ?', [id]);
+            yield database_1.default.query('DELETE FROM barriosVeredas WHERE idBarriosVeredas = ?', [id]);
             res.json({ message: "The barrio was deleted" });
         });
     }

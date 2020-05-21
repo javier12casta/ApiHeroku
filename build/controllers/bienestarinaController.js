@@ -16,7 +16,7 @@ const database_1 = __importDefault(require("../database"));
 class BienestarinaController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const bienestarina = yield database_1.default.query('SELECT * FROM Bienestarina');
+            const bienestarina = yield database_1.default.query('SELECT * FROM bienestarina');
             res.json(bienestarina);
         });
     }
@@ -65,7 +65,7 @@ class BienestarinaController {
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const games = yield database_1.default.query('SELECT * FROM Bienestarina WHERE idBienestarina = ?', [id]);
+            const games = yield database_1.default.query('SELECT * FROM bienestarina WHERE idBienestarina = ?', [id]);
             console.log(games.length);
             if (games.length > 0) {
                 return res.json(games[0]);
@@ -97,7 +97,7 @@ class BienestarinaController {
     }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const result = yield database_1.default.query('INSERT INTO Bienestarina set ?', [req.body]);
+            const result = yield database_1.default.query('INSERT INTO bienestarina set ?', [req.body]);
             res.json({ message: 'Bienestarina Saved' });
         });
     }
@@ -105,14 +105,14 @@ class BienestarinaController {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
             const oldGame = req.body;
-            yield database_1.default.query('UPDATE Bienestarina set ? WHERE idBienestarina = ?', [req.body, id]);
+            yield database_1.default.query('UPDATE bienestarina set ? WHERE idBienestarina = ?', [req.body, id]);
             res.json({ message: "The Bienestarina was Updated" });
         });
     }
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            yield database_1.default.query('DELETE FROM Bienestarina WHERE idBienestarina = ?', [id]);
+            yield database_1.default.query('DELETE FROM bienestarina WHERE idBienestarina = ?', [id]);
             res.json({ message: "The Bienestarina was deleted" });
         });
     }

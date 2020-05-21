@@ -16,14 +16,14 @@ const database_1 = __importDefault(require("../database"));
 class ReportesController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const reporte = yield database_1.default.query('SELECT * FROM Reportes');
+            const reporte = yield database_1.default.query('SELECT * FROM reportes');
             res.json(reporte);
         });
     }
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const games = yield database_1.default.query('SELECT * FROM Reportes WHERE idReportes = ?', [id]);
+            const games = yield database_1.default.query('SELECT * FROM reportes WHERE idReportes = ?', [id]);
             console.log(games.length);
             if (games.length > 0) {
                 return res.json(games[0]);
@@ -33,7 +33,7 @@ class ReportesController {
     }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const result = yield database_1.default.query('INSERT INTO Reportes set ?', [req.body]);
+            const result = yield database_1.default.query('INSERT INTO reportes set ?', [req.body]);
             res.json({ message: 'Reportes Saved' });
         });
     }
@@ -41,14 +41,14 @@ class ReportesController {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
             const oldGame = req.body;
-            yield database_1.default.query('UPDATE Reportes set ? WHERE idReportes = ?', [req.body, id]);
+            yield database_1.default.query('UPDATE reportes set ? WHERE idReportes = ?', [req.body, id]);
             res.json({ message: "The Reportes was Updated" });
         });
     }
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            yield database_1.default.query('DELETE FROM Reportes WHERE idReportes = ?', [id]);
+            yield database_1.default.query('DELETE FROM reportes WHERE idReportes = ?', [id]);
             res.json({ message: "The Reportes was deleted" });
         });
     }

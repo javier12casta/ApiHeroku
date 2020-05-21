@@ -16,14 +16,14 @@ const database_1 = __importDefault(require("../database"));
 class MunicipioController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const municipio = yield database_1.default.query('SELECT * FROM Municipios');
+            const municipio = yield database_1.default.query('SELECT * FROM municipios');
             res.json(municipio);
         });
     }
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const games = yield database_1.default.query('SELECT * FROM Municipios WHERE idMunicipios= ?', [id]);
+            const games = yield database_1.default.query('SELECT * FROM municipios WHERE idMunicipios= ?', [id]);
             console.log(games.length);
             if (games.length > 0) {
                 return res.json(games[0]);
@@ -33,7 +33,7 @@ class MunicipioController {
     }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const result = yield database_1.default.query('INSERT INTO Municipios set ?', [req.body]);
+            const result = yield database_1.default.query('INSERT INTO municipios set ?', [req.body]);
             res.json({ message: 'Municipios Saved' });
         });
     }
@@ -41,14 +41,14 @@ class MunicipioController {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
             const oldGame = req.body;
-            yield database_1.default.query('UPDATE Municipios set ? WHERE idMunicipios = ?', [req.body, id]);
+            yield database_1.default.query('UPDATE municipios set ? WHERE idMunicipios = ?', [req.body, id]);
             res.json({ message: "The Municipios was Updated" });
         });
     }
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            yield database_1.default.query('DELETE FROM Municipios WHERE idMunicipios= ?', [id]);
+            yield database_1.default.query('DELETE FROM municipios WHERE idMunicipios= ?', [id]);
             res.json({ message: "The Municipios was deleted" });
         });
     }

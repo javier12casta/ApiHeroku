@@ -16,14 +16,14 @@ const database_1 = __importDefault(require("../database"));
 class UnidadController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const UnidadMedida = yield database_1.default.query('SELECT * FROM UnidadMedida');
+            const UnidadMedida = yield database_1.default.query('SELECT * FROM unidadmedida');
             res.json(UnidadMedida);
         });
     }
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const games = yield database_1.default.query('SELECT * FROM UnidadMedida WHERE idUnidadMedida = ?', [id]);
+            const games = yield database_1.default.query('SELECT * FROM unidadmedida WHERE idUnidadMedida = ?', [id]);
             console.log(games.length);
             if (games.length > 0) {
                 return res.json(games[0]);
@@ -33,7 +33,7 @@ class UnidadController {
     }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const result = yield database_1.default.query('INSERT INTO UnidadMedida set ?', [req.body]);
+            const result = yield database_1.default.query('INSERT INTO unidadmedida set ?', [req.body]);
             res.json({ message: 'UnidadMedida Saved' });
         });
     }
@@ -41,14 +41,14 @@ class UnidadController {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
             const oldGame = req.body;
-            yield database_1.default.query('UPDATE UnidadMedida set ? WHERE idUnidadMedida = ?', [req.body, id]);
+            yield database_1.default.query('UPDATE unidadmedida set ? WHERE idUnidadMedida = ?', [req.body, id]);
             res.json({ message: "The UnidadMedida was Updated" });
         });
     }
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            yield database_1.default.query('DELETE FROM UnidadMedida WHERE idUnidadMedida = ?', [id]);
+            yield database_1.default.query('DELETE FROM unidadmedida WHERE idUnidadMedida = ?', [id]);
             res.json({ message: "The UnidadMedida was deleted" });
         });
     }

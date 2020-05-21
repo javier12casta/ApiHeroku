@@ -16,7 +16,7 @@ const database_1 = __importDefault(require("../database"));
 class BeneficiariosController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const beneficiario = yield database_1.default.query('SELECT * FROM Beneficiarios');
+            const beneficiario = yield database_1.default.query('SELECT * FROM beneficiarios');
             res.json(beneficiario);
         });
     }
@@ -53,7 +53,7 @@ class BeneficiariosController {
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const games = yield database_1.default.query('SELECT * , DATE_FORMAT(FechaNacimiento,"%Y-%m-%d")AS FechaNacimiento, DATE_FORMAT(FechaIngreso,"%Y-%m-%d")AS FechaIngreso FROM Beneficiarios WHERE idBeneficiarios = ?', [id]);
+            const games = yield database_1.default.query('SELECT * , DATE_FORMAT(FechaNacimiento,"%Y-%m-%d")AS FechaNacimiento, DATE_FORMAT(FechaIngreso,"%Y-%m-%d")AS FechaIngreso FROM beneficiarios WHERE idBeneficiarios = ?', [id]);
             console.log(games.length);
             if (games.length > 0) {
                 return res.json(games[0]);
@@ -63,7 +63,7 @@ class BeneficiariosController {
     }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const result = yield database_1.default.query('INSERT INTO Beneficiarios set ?', [req.body]);
+            const result = yield database_1.default.query('INSERT INTO beneficiarios set ?', [req.body]);
             res.json({ message: 'Beneficiario Saved' });
         });
     }
@@ -71,14 +71,14 @@ class BeneficiariosController {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
             const oldGame = req.body;
-            yield database_1.default.query('UPDATE Beneficiarios set ? WHERE idBeneficiarios = ?', [req.body, id]);
+            yield database_1.default.query('UPDATE beneficiarios set ? WHERE idBeneficiarios = ?', [req.body, id]);
             res.json({ message: "The beneficiario was Updated" });
         });
     }
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            yield database_1.default.query('DELETE FROM Beneficiarios WHERE idBeneficiarios = ?', [id]);
+            yield database_1.default.query('DELETE FROM beneficiarios WHERE idBeneficiarios = ?', [id]);
             res.json({ message: "The beneficiario was deleted" });
         });
     }

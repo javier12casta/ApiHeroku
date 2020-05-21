@@ -16,14 +16,14 @@ const database_1 = __importDefault(require("../database"));
 class EntregaController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const entrega = yield database_1.default.query('SELECT * FROM Entrega');
+            const entrega = yield database_1.default.query('SELECT * FROM entrega');
             res.json(entrega);
         });
     }
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const games = yield database_1.default.query('SELECT * FROM Entrega WHERE idEntrega = ?', [id]);
+            const games = yield database_1.default.query('SELECT * FROM entrega WHERE idEntrega = ?', [id]);
             console.log(games.length);
             if (games.length > 0) {
                 return res.json(games[0]);
@@ -33,7 +33,7 @@ class EntregaController {
     }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const result = yield database_1.default.query('INSERT INTO Entrega set ?', [req.body]);
+            const result = yield database_1.default.query('INSERT INTO entrega set ?', [req.body]);
             res.json({ message: 'Entrega Saved' });
         });
     }
@@ -41,14 +41,14 @@ class EntregaController {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
             const oldGame = req.body;
-            yield database_1.default.query('UPDATE Entrega set ? WHERE idEntrega = ?', [req.body, id]);
+            yield database_1.default.query('UPDATE entrega set ? WHERE idEntrega = ?', [req.body, id]);
             res.json({ message: "The Entrega was Updated" });
         });
     }
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            yield database_1.default.query('DELETE FROM Entrega WHERE idEntrega = ?', [id]);
+            yield database_1.default.query('DELETE FROM entrega WHERE idEntrega = ?', [id]);
             res.json({ message: "The Entrega was deleted" });
         });
     }

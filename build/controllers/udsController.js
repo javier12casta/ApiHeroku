@@ -16,7 +16,7 @@ const database_1 = __importDefault(require("../database"));
 class UdsController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const UDS = yield database_1.default.query('SELECT * FROM UDS');
+            const UDS = yield database_1.default.query('SELECT * FROM uds');
             res.json(UDS);
         });
     }
@@ -29,7 +29,7 @@ class UdsController {
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const games = yield database_1.default.query('SELECT * FROM UDS WHERE idUDS = ?', [id]);
+            const games = yield database_1.default.query('SELECT * FROM uds WHERE idUDS = ?', [id]);
             console.log(games.length);
             if (games.length > 0) {
                 return res.json(games[0]);
@@ -39,7 +39,7 @@ class UdsController {
     }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const result = yield database_1.default.query('INSERT INTO UDS set ?', [req.body]);
+            const result = yield database_1.default.query('INSERT INTO uds set ?', [req.body]);
             res.json({ message: 'UDS Saved' });
         });
     }
@@ -47,14 +47,14 @@ class UdsController {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
             const oldGame = req.body;
-            yield database_1.default.query('UPDATE UDS set ? WHERE idUDS= ?', [req.body, id]);
+            yield database_1.default.query('UPDATE uds set ? WHERE idUDS= ?', [req.body, id]);
             res.json({ message: "The UDS was Updated" });
         });
     }
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            yield database_1.default.query('DELETE FROM UDS WHERE idUDS = ?', [id]);
+            yield database_1.default.query('DELETE FROM uds WHERE idUDS = ?', [id]);
             res.json({ message: "The UDS was deleted" });
         });
     }

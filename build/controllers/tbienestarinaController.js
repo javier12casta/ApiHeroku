@@ -16,14 +16,14 @@ const database_1 = __importDefault(require("../database"));
 class TbienestarinaController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const TipoBienesterina = yield database_1.default.query('SELECT * FROM ReferenciaBienestarina');
+            const TipoBienesterina = yield database_1.default.query('SELECT * FROM referenciabienestarina');
             res.json(TipoBienesterina);
         });
     }
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const games = yield database_1.default.query('SELECT * FROM ReferenciaBienestarina WHERE idTipoBienesterina = ?', [id]);
+            const games = yield database_1.default.query('SELECT * FROM referenciabienestarina WHERE idTipoBienesterina = ?', [id]);
             console.log(games.length);
             if (games.length > 0) {
                 return res.json(games[0]);
@@ -33,7 +33,7 @@ class TbienestarinaController {
     }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const result = yield database_1.default.query('INSERT INTO ReferenciaBienestarina set ?', [req.body]);
+            const result = yield database_1.default.query('INSERT INTO referenciabienestarina set ?', [req.body]);
             res.json({ message: 'TipoBienesterina Saved' });
         });
     }
@@ -41,14 +41,14 @@ class TbienestarinaController {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
             const oldGame = req.body;
-            yield database_1.default.query('UPDATE ReferenciaBienestarina set ? WHERE idTipoBienesterina = ?', [req.body, id]);
+            yield database_1.default.query('UPDATE referenciabienestarina set ? WHERE idTipoBienesterina = ?', [req.body, id]);
             res.json({ message: "The TipoBienesterina was Updated" });
         });
     }
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            yield database_1.default.query('DELETE FROM ReferenciaBienestarina WHERE idTipoBienesterina = ?', [id]);
+            yield database_1.default.query('DELETE FROM referenciabienestarina WHERE idTipoBienesterina = ?', [id]);
             res.json({ message: "The TipoBienesterina was deleted" });
         });
     }

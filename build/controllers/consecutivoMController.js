@@ -16,7 +16,7 @@ const database_1 = __importDefault(require("../database"));
 class ConsecutivoMController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const consecutivo = yield database_1.default.query('SELECT * FROM ConsecutivosMaestro');
+            const consecutivo = yield database_1.default.query('SELECT * FROM consecutivosmaestro');
             res.json(consecutivo);
         });
     }
@@ -137,7 +137,7 @@ class ConsecutivoMController {
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const games = yield database_1.default.query('SELECT * FROM ConsecutivosMaestro WHERE idConsecutivosMaestro = ?', [id]);
+            const games = yield database_1.default.query('SELECT * FROM consecutivosmaestro WHERE idConsecutivosMaestro = ?', [id]);
             console.log(games.length);
             if (games.length > 0) {
                 return res.json(games[0]);
@@ -147,7 +147,7 @@ class ConsecutivoMController {
     }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const result = yield database_1.default.query('INSERT INTO ConsecutivosMaestro set ?', [req.body]);
+            const result = yield database_1.default.query('INSERT INTO consecutivosmaestro set ?', [req.body]);
             res.json({ message: 'Consecutivo Maestro Interno Saved' });
         });
     }
@@ -155,14 +155,14 @@ class ConsecutivoMController {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
             const oldGame = req.body;
-            yield database_1.default.query('UPDATE ConsecutivosMaestro set ? WHERE idConsecutivosMaestro = ?', [req.body, id]);
+            yield database_1.default.query('UPDATE consecutivosmaestro set ? WHERE idConsecutivosMaestro = ?', [req.body, id]);
             res.json({ message: "The Consecutivo Maestro was Updated" });
         });
     }
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            yield database_1.default.query('DELETE FROM ConsecutivosMaestro WHERE idConsecutivosMaestro= ?', [id]);
+            yield database_1.default.query('DELETE FROM consecutivosmaestro WHERE idConsecutivosMaestro= ?', [id]);
             res.json({ message: "The Consecutivo Maestro was deleted" });
         });
     }

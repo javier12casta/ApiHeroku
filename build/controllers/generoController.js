@@ -16,14 +16,14 @@ const database_1 = __importDefault(require("../database"));
 class GeneroController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const genero = yield database_1.default.query('SELECT * FROM Genero');
+            const genero = yield database_1.default.query('SELECT * FROM genero');
             res.json(genero);
         });
     }
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const games = yield database_1.default.query('SELECT * FROM Genero WHERE idGenero = ?', [id]);
+            const games = yield database_1.default.query('SELECT * FROM genero WHERE idGenero = ?', [id]);
             console.log(games.length);
             if (games.length > 0) {
                 return res.json(games[0]);
@@ -33,7 +33,7 @@ class GeneroController {
     }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const result = yield database_1.default.query('INSERT INTO Genero set ?', [req.body]);
+            const result = yield database_1.default.query('INSERT INTO genero set ?', [req.body]);
             res.json({ message: 'Genero Saved' });
         });
     }
@@ -41,14 +41,14 @@ class GeneroController {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
             const oldGame = req.body;
-            yield database_1.default.query('UPDATE Genero set ? WHERE idGenero = ?', [req.body, id]);
+            yield database_1.default.query('UPDATE genero set ? WHERE idGenero = ?', [req.body, id]);
             res.json({ message: "The genero was Updated" });
         });
     }
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            yield database_1.default.query('DELETE FROM Genero WHERE idGenero = ?', [id]);
+            yield database_1.default.query('DELETE FROM genero WHERE idGenero = ?', [id]);
             res.json({ message: "The Genero was deleted" });
         });
     }

@@ -16,7 +16,7 @@ const database_1 = __importDefault(require("../database"));
 class CentrosDController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const centro = yield database_1.default.query('SELECT * FROM CentroDistribucion');
+            const centro = yield database_1.default.query('SELECT * FROM centrodistribucion');
             res.json(centro);
         });
     }
@@ -59,7 +59,7 @@ class CentrosDController {
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const centro = yield database_1.default.query('SELECT * FROM CentroDistribucion WHERE idCentroDistribucion = ?', [id]);
+            const centro = yield database_1.default.query('SELECT * FROM centrodistribucion WHERE idCentroDistribucion = ?', [id]);
             console.log(centro.length);
             if (centro.length > 0) {
                 return res.json(centro[0]);
@@ -69,7 +69,7 @@ class CentrosDController {
     }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const result = yield database_1.default.query('INSERT INTO CentroDistribucion set ?', [req.body]);
+            const result = yield database_1.default.query('INSERT INTO centrodistribucion set ?', [req.body]);
             res.json({ message: 'Centro Distribucion Saved' });
         });
     }
@@ -77,14 +77,14 @@ class CentrosDController {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
             const oldGame = req.body;
-            yield database_1.default.query('UPDATE CentroDistribucion set ? WHERE idCentroDistribucion = ?', [req.body, id]);
+            yield database_1.default.query('UPDATE centrodistribucion set ? WHERE idCentroDistribucion = ?', [req.body, id]);
             res.json({ message: "The Centro Distribucion was Updated" });
         });
     }
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            yield database_1.default.query('DELETE FROM CentroDistribucion WHERE idCentroDistribucion = ?', [id]);
+            yield database_1.default.query('DELETE FROM centrodistribucion WHERE idCentroDistribucion = ?', [id]);
             res.json({ message: "The Centro Distribucion was deleted" });
         });
     }

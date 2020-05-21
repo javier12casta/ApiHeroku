@@ -16,14 +16,14 @@ const database_1 = __importDefault(require("../database"));
 class RolController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const rol = yield database_1.default.query('SELECT * FROM RolPersona');
+            const rol = yield database_1.default.query('SELECT * FROM rolpersona');
             res.json(rol);
         });
     }
     getRol(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { rol } = req.params;
-            const games = yield database_1.default.query('SELECT * FROM `RolPersona` WHERE RolPersona = ?', [rol]);
+            const games = yield database_1.default.query('SELECT * FROM rolpersona WHERE RolPersona = ?', [rol]);
             console.log(games.length);
             if (games.length > 0) {
                 return res.json(games[0]);
@@ -34,7 +34,7 @@ class RolController {
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const games = yield database_1.default.query('SELECT * FROM RolPersona WHERE idRolPersona= ?', [id]);
+            const games = yield database_1.default.query('SELECT * FROM rolpersona WHERE idRolPersona= ?', [id]);
             console.log(games.length);
             if (games.length > 0) {
                 return res.json(games[0]);
@@ -44,7 +44,7 @@ class RolController {
     }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const result = yield database_1.default.query('INSERT INTO RolPersona set ?', [req.body]);
+            const result = yield database_1.default.query('INSERT INTO rolpersona set ?', [req.body]);
             res.json({ message: 'RolPersona Saved' });
         });
     }
@@ -52,14 +52,14 @@ class RolController {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
             const oldGame = req.body;
-            yield database_1.default.query('UPDATE RolPersona set ? WHERE idRolPersona = ?', [req.body, id]);
+            yield database_1.default.query('UPDATE rolpersona set ? WHERE idRolPersona = ?', [req.body, id]);
             res.json({ message: "The RolPersona was Updated" });
         });
     }
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            yield database_1.default.query('DELETE FROM RolPersona WHERE idRolPersona = ?', [id]);
+            yield database_1.default.query('DELETE FROM rolpersona WHERE idRolPersona = ?', [id]);
             res.json({ message: "The RolPersona was deleted" });
         });
     }

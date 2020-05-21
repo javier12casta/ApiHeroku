@@ -16,7 +16,7 @@ const database_1 = __importDefault(require("../database"));
 class DatosController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const datos = yield database_1.default.query('SELECT * FROM DatosVarios');
+            const datos = yield database_1.default.query('SELECT * FROM datosvarios');
             res.json(datos);
         });
     }
@@ -41,7 +41,7 @@ class DatosController {
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const games = yield database_1.default.query('SELECT * FROM DatosVarios WHERE idDatosVarios = ?', [id]);
+            const games = yield database_1.default.query('SELECT * FROM datosvarios WHERE idDatosVarios = ?', [id]);
             console.log(games.length);
             if (games.length > 0) {
                 return res.json(games[0]);
@@ -51,7 +51,7 @@ class DatosController {
     }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const result = yield database_1.default.query('INSERT INTO DatosVarios set ?', [req.body]);
+            const result = yield database_1.default.query('INSERT INTO datosvarios set ?', [req.body]);
             res.json({ message: 'Datos Varios Saved' });
         });
     }
@@ -59,14 +59,14 @@ class DatosController {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
             const oldGame = req.body;
-            yield database_1.default.query('UPDATE DatosVarios set ? WHERE idDatosVarios = ?', [req.body, id]);
+            yield database_1.default.query('UPDATE datosvarios set ? WHERE idDatosVarios = ?', [req.body, id]);
             res.json({ message: "The Datos Varios was Updated" });
         });
     }
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            yield database_1.default.query('DELETE FROM DatosVarios WHERE idDatosVarios = ?', [id]);
+            yield database_1.default.query('DELETE FROM datosvarios WHERE idDatosVarios = ?', [id]);
             res.json({ message: "The DatosVarios was deleted" });
         });
     }

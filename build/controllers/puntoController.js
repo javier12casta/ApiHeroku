@@ -16,13 +16,13 @@ const database_1 = __importDefault(require("../database"));
 class PuntoController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const punto = yield database_1.default.query('SELECT * FROM PuntoEntrega');
+            const punto = yield database_1.default.query('SELECT * FROM puntoentrega');
             res.json(punto);
         });
     }
     list2(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const punto = yield database_1.default.query('SELECT * FROM PuntoEntrega WHERE Estado = 1');
+            const punto = yield database_1.default.query('SELECT * FROM puntoentrega WHERE Estado = 1');
             res.json(punto);
         });
     }
@@ -35,7 +35,7 @@ class PuntoController {
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const games = yield database_1.default.query('SELECT * FROM PuntoEntrega WHERE idPuntoEntrega = ?', [id]);
+            const games = yield database_1.default.query('SELECT * FROM puntoentrega WHERE idPuntoEntrega = ?', [id]);
             console.log(games.length);
             if (games.length > 0) {
                 return res.json(games[0]);
@@ -45,7 +45,7 @@ class PuntoController {
     }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const result = yield database_1.default.query('INSERT INTO PuntoEntrega set ?', [req.body]);
+            const result = yield database_1.default.query('INSERT INTO puntoentrega set ?', [req.body]);
             res.json({ message: 'PuntoEntrega Saved' });
         });
     }
@@ -53,14 +53,14 @@ class PuntoController {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
             const oldGame = req.body;
-            yield database_1.default.query('UPDATE PuntoEntrega set ? WHERE idPuntoEntrega = ?', [req.body, id]);
+            yield database_1.default.query('UPDATE puntoentrega set ? WHERE idPuntoEntrega = ?', [req.body, id]);
             res.json({ message: "The PuntoEntrega was Updated" });
         });
     }
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            yield database_1.default.query('DELETE FROM PuntoEntrega WHERE idPuntoEntrega= ?', [id]);
+            yield database_1.default.query('DELETE FROM puntoentrega WHERE idPuntoEntrega= ?', [id]);
             res.json({ message: "The PuntoEntrega was deleted" });
         });
     }

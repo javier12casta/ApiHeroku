@@ -16,7 +16,7 @@ const database_1 = __importDefault(require("../database"));
 class CentrosZController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const centro = yield database_1.default.query('SELECT * FROM CentrosZonales');
+            const centro = yield database_1.default.query('SELECT * FROM centroszonales');
             res.json(centro);
         });
     }
@@ -41,7 +41,7 @@ class CentrosZController {
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const games = yield database_1.default.query('SELECT * FROM CentrosZonales WHERE idCentrosZonales = ?', [id]);
+            const games = yield database_1.default.query('SELECT * FROM centroszonales WHERE idCentrosZonales = ?', [id]);
             console.log(games.length);
             if (games.length > 0) {
                 return res.json(games[0]);
@@ -51,7 +51,7 @@ class CentrosZController {
     }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const result = yield database_1.default.query('INSERT INTO CentrosZonales set ?', [req.body]);
+            const result = yield database_1.default.query('INSERT INTO centroszonales set ?', [req.body]);
             res.json({ message: 'Centro Zonal Saved' });
         });
     }
@@ -59,14 +59,14 @@ class CentrosZController {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
             const oldGame = req.body;
-            yield database_1.default.query('UPDATE CentrosZonales set ? WHERE idCentrosZonales = ?', [req.body, id]);
+            yield database_1.default.query('UPDATE centroszonales set ? WHERE idCentrosZonales = ?', [req.body, id]);
             res.json({ message: "The Centro Zonal was Updated" });
         });
     }
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            yield database_1.default.query('DELETE FROM CentrosZonales WHERE idCentrosZonales = ?', [id]);
+            yield database_1.default.query('DELETE FROM centroszonales WHERE idCentrosZonales = ?', [id]);
             res.json({ message: "The Centro Zonal was deleted" });
         });
     }

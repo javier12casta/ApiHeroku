@@ -16,7 +16,7 @@ const database_1 = __importDefault(require("../database"));
 class ListaPController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const lista = yield database_1.default.query('SELECT * FROM ListaPrecios');
+            const lista = yield database_1.default.query('SELECT * FROM listaprecios');
             res.json(lista);
         });
     }
@@ -35,7 +35,7 @@ class ListaPController {
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const games = yield database_1.default.query('SELECT * FROM ListaPrecios WHERE idListaPrecios = ?', [id]);
+            const games = yield database_1.default.query('SELECT * FROM listaprecios WHERE idListaPrecios = ?', [id]);
             console.log(games.length);
             if (games.length > 0) {
                 return res.json(games[0]);
@@ -45,7 +45,7 @@ class ListaPController {
     }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const result = yield database_1.default.query('INSERT INTO ListaPrecios set ?', [req.body]);
+            const result = yield database_1.default.query('INSERT INTO listaprecios set ?', [req.body]);
             res.json({ message: 'Lista PreciosSaved' });
         });
     }
@@ -53,14 +53,14 @@ class ListaPController {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
             const oldGame = req.body;
-            yield database_1.default.query('UPDATE ListaPrecios set ? WHERE idListaPrecios = ?', [req.body, id]);
+            yield database_1.default.query('UPDATE listaprecios set ? WHERE idListaPrecios = ?', [req.body, id]);
             res.json({ message: "The Lista Precios was Updated" });
         });
     }
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            yield database_1.default.query('DELETE FROM ListaPrecios WHERE idListaPrecios = ?', [id]);
+            yield database_1.default.query('DELETE FROM listaprecios WHERE idListaPrecios = ?', [id]);
             res.json({ message: "The Lista Precios was deleted" });
         });
     }

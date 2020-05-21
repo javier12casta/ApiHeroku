@@ -16,14 +16,14 @@ const database_1 = __importDefault(require("../database"));
 class ConsecutivoIController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const consecutivo = yield database_1.default.query('SELECT * FROM ConsecutivoInterno');
+            const consecutivo = yield database_1.default.query('SELECT * FROM consecutivointerno');
             res.json(consecutivo);
         });
     }
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const games = yield database_1.default.query('SELECT * FROM ConsecutivoInterno WHERE idConsecutivoInterno = ?', [id]);
+            const games = yield database_1.default.query('SELECT * FROM consecutivointerno WHERE idConsecutivoInterno = ?', [id]);
             console.log(games.length);
             if (games.length > 0) {
                 return res.json(games[0]);
@@ -33,7 +33,7 @@ class ConsecutivoIController {
     }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const result = yield database_1.default.query('INSERT INTO ConsecutivoInterno set ?', [req.body]);
+            const result = yield database_1.default.query('INSERT INTO consecutivointerno set ?', [req.body]);
             res.json({ message: 'Consecutivo Interno Saved' });
         });
     }
@@ -41,14 +41,14 @@ class ConsecutivoIController {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
             const oldGame = req.body;
-            yield database_1.default.query('UPDATE ConsecutivoInterno set ? WHERE idConsecutivoInterno = ?', [req.body, id]);
+            yield database_1.default.query('UPDATE consecutivointerno set ? WHERE idConsecutivoInterno = ?', [req.body, id]);
             res.json({ message: "The Consecutivo Interno was Updated" });
         });
     }
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            yield database_1.default.query('DELETE FROM ConsecutivoInterno WHERE idConsecutivoInterno= ?', [id]);
+            yield database_1.default.query('DELETE FROM consecutivointerno WHERE idConsecutivoInterno= ?', [id]);
             res.json({ message: "The Consecutivo Interno was deleted" });
         });
     }

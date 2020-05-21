@@ -16,7 +16,7 @@ const database_1 = __importDefault(require("../database"));
 class AcudientesController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const acudiente = yield database_1.default.query('SELECT * FROM Acudientes');
+            const acudiente = yield database_1.default.query('SELECT * FROM acudientes');
             res.json(acudiente);
         });
     }
@@ -29,7 +29,7 @@ class AcudientesController {
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const games = yield database_1.default.query('SELECT * , DATE_FORMAT(FechaNacimiento,"%Y-%m-%d")AS FechaNacimiento, DATE_FORMAT(FechaIngreso,"%Y-%m-%d")AS FechaIngreso FROM Acudientes WHERE idBeneficiarios = ?', [id]);
+            const games = yield database_1.default.query('SELECT * , DATE_FORMAT(FechaNacimiento,"%Y-%m-%d")AS FechaNacimiento, DATE_FORMAT(FechaIngreso,"%Y-%m-%d")AS FechaIngreso FROM acudientes WHERE idBeneficiarios = ?', [id]);
             console.log(games.length);
             if (games.length > 0) {
                 return res.json(games[0]);
@@ -39,7 +39,7 @@ class AcudientesController {
     }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const result = yield database_1.default.query('INSERT INTO Acudientes set ?', [req.body]);
+            const result = yield database_1.default.query('INSERT INTO acudientes set ?', [req.body]);
             res.json({ message: 'Acudiente Saved' });
         });
     }
@@ -47,14 +47,14 @@ class AcudientesController {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
             const oldGame = req.body;
-            yield database_1.default.query('UPDATE Acudientes set ? WHERE idAcudientes = ?', [req.body, id]);
+            yield database_1.default.query('UPDATE acudientes set ? WHERE idAcudientes = ?', [req.body, id]);
             res.json({ message: "The acudiente was Updated" });
         });
     }
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            yield database_1.default.query('DELETE FROM Acudientes WHERE idAcudientes = ?', [id]);
+            yield database_1.default.query('DELETE FROM acudientes WHERE idAcudientes = ?', [id]);
             res.json({ message: "The acudiente was deleted" });
         });
     }

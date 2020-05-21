@@ -16,14 +16,14 @@ const database_1 = __importDefault(require("../database"));
 class ListaMController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const lista = yield database_1.default.query('SELECT * FROM ServicioModalidad');
+            const lista = yield database_1.default.query('SELECT * FROM serviciomodalidad');
             res.json(lista);
         });
     }
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const games = yield database_1.default.query('SELECT * FROM ServicioModalidad WHERE idListasMaestro = ?', [id]);
+            const games = yield database_1.default.query('SELECT * FROM serviciomodalidad WHERE idListasMaestro = ?', [id]);
             console.log(games.length);
             if (games.length > 0) {
                 return res.json(games[0]);
@@ -33,7 +33,7 @@ class ListaMController {
     }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const result = yield database_1.default.query('INSERT INTO ServicioModalidad set ?', [req.body]);
+            const result = yield database_1.default.query('INSERT INTO serviciomodalidad set ?', [req.body]);
             res.json({ message: 'Listas Maestro Saved' });
         });
     }
@@ -41,14 +41,14 @@ class ListaMController {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
             const oldGame = req.body;
-            yield database_1.default.query('UPDATE ServicioModalidad set ? WHERE idListasMaestro = ?', [req.body, id]);
+            yield database_1.default.query('UPDATE serviciomodalidad set ? WHERE idListasMaestro = ?', [req.body, id]);
             res.json({ message: "The ListasMaestro was Updated" });
         });
     }
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            yield database_1.default.query('DELETE FROM ServicioModalidad WHERE idListasMaestro = ?', [id]);
+            yield database_1.default.query('DELETE FROM serviciomodalidad WHERE idListasMaestro = ?', [id]);
             res.json({ message: "The Listas Maestrowas deleted" });
         });
     }

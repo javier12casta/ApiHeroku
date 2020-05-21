@@ -16,14 +16,14 @@ const database_1 = __importDefault(require("../database"));
 class RegionalController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const regional = yield database_1.default.query('SELECT * FROM Regional');
+            const regional = yield database_1.default.query('SELECT * FROM regional');
             res.json(regional);
         });
     }
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const games = yield database_1.default.query('SELECT * FROM Regional WHERE idRegional= ?', [id]);
+            const games = yield database_1.default.query('SELECT * FROM regional WHERE idRegional= ?', [id]);
             console.log(games.length);
             if (games.length > 0) {
                 return res.json(games[0]);
@@ -33,7 +33,7 @@ class RegionalController {
     }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const result = yield database_1.default.query('INSERT INTO Regional set ?', [req.body]);
+            const result = yield database_1.default.query('INSERT INTO regional set ?', [req.body]);
             res.json({ message: 'Regional Saved' });
         });
     }
@@ -41,14 +41,14 @@ class RegionalController {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
             const oldGame = req.body;
-            yield database_1.default.query('UPDATE Regional set ? WHERE idRegional = ?', [req.body, id]);
+            yield database_1.default.query('UPDATE regional set ? WHERE idRegional = ?', [req.body, id]);
             res.json({ message: "The Regional was Updated" });
         });
     }
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            yield database_1.default.query('DELETE FROM Regional WHERE idRegional = ?', [id]);
+            yield database_1.default.query('DELETE FROM regional WHERE idRegional = ?', [id]);
             res.json({ message: "The Regional was deleted" });
         });
     }

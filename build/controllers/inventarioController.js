@@ -16,14 +16,14 @@ const database_1 = __importDefault(require("../database"));
 class InventarioController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const inventario = yield database_1.default.query('SELECT * FROM Inventario');
+            const inventario = yield database_1.default.query('SELECT * FROM inventario');
             res.json(inventario);
         });
     }
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const games = yield database_1.default.query('SELECT * FROM Inventario WHERE idInventario = ?', [id]);
+            const games = yield database_1.default.query('SELECT * FROM inventario WHERE idInventario = ?', [id]);
             console.log(games.length);
             if (games.length > 0) {
                 return res.json(games[0]);
@@ -34,7 +34,7 @@ class InventarioController {
     getInv(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { nombre } = req.params;
-            const games = yield database_1.default.query('SELECT * FROM Inventario WHERE 	Nombre = ?', [nombre]);
+            const games = yield database_1.default.query('SELECT * FROM inventario WHERE 	Nombre = ?', [nombre]);
             console.log(games.length);
             if (games.length > 0) {
                 return res.json(games[0]);
@@ -44,7 +44,7 @@ class InventarioController {
     }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const result = yield database_1.default.query('INSERT INTO Inventario set ?', [req.body]);
+            const result = yield database_1.default.query('INSERT INTO inventario set ?', [req.body]);
             res.json({ message: 'Inventario Saved' });
         });
     }
@@ -52,14 +52,14 @@ class InventarioController {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
             const oldGame = req.body;
-            yield database_1.default.query('UPDATE Inventario set ? WHERE idInventario= ?', [req.body, id]);
+            yield database_1.default.query('UPDATE inventario set ? WHERE idInventario= ?', [req.body, id]);
             res.json({ message: "The Inventario was Updated" });
         });
     }
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            yield database_1.default.query('DELETE FROM Inventario WHERE idInventario = ?', [id]);
+            yield database_1.default.query('DELETE FROM inventario WHERE idInventario = ?', [id]);
             res.json({ message: "The Inventario was deleted" });
         });
     }

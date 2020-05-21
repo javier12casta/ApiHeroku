@@ -16,7 +16,7 @@ const database_1 = __importDefault(require("../database"));
 class ListaCController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const lista = yield database_1.default.query('SELECT * FROM ListadoCursos');
+            const lista = yield database_1.default.query('SELECT * FROM listadocursos');
             res.json(lista);
         });
     }
@@ -51,7 +51,7 @@ class ListaCController {
     }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const result = yield database_1.default.query('INSERT INTO ListadoCursos set ?', [req.body]);
+            const result = yield database_1.default.query('INSERT INTO listadocursos set ?', [req.body]);
             res.json({ message: 'Listado Cursos Saved' });
         });
     }
@@ -59,14 +59,14 @@ class ListaCController {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
             const oldGame = req.body;
-            yield database_1.default.query('UPDATE ListadoCursos set ? WHERE idListadoCursos = ?', [req.body, id]);
+            yield database_1.default.query('UPDATE listadocursos set ? WHERE idListadoCursos = ?', [req.body, id]);
             res.json({ message: "The Listado Cursos was Updated" });
         });
     }
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            yield database_1.default.query('DELETE FROM ListadoCursos WHERE idListadoCursos = ?', [id]);
+            yield database_1.default.query('DELETE FROM listadocursos WHERE idListadoCursos = ?', [id]);
             res.json({ message: "The Listado Cursos was deleted" });
         });
     }

@@ -16,7 +16,7 @@ const database_1 = __importDefault(require("../database"));
 class UsuariosController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const Usuarios = yield database_1.default.query('SELECT * FROM Usuarios');
+            const Usuarios = yield database_1.default.query('SELECT * FROM usuarios');
             res.json(Usuarios);
         });
     }
@@ -47,7 +47,7 @@ class UsuariosController {
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const games = yield database_1.default.query('SELECT *, DATE_FORMAT(FechaIngreso,"%Y-%m-%d")AS FechaIngreso FROM Usuarios WHERE idUsuarios = ?', [id]);
+            const games = yield database_1.default.query('SELECT *, DATE_FORMAT(FechaIngreso,"%Y-%m-%d")AS FechaIngreso FROM usuarios WHERE idUsuarios = ?', [id]);
             console.log(games.length);
             if (games.length > 0) {
                 return res.json(games[0]);
@@ -68,7 +68,7 @@ class UsuariosController {
     }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const result = yield database_1.default.query('INSERT INTO Usuarios set ?', [req.body]);
+            const result = yield database_1.default.query('INSERT INTO usuarios set ?', [req.body]);
             res.json({ message: 'Usuario Saved' });
         });
     }
@@ -76,14 +76,14 @@ class UsuariosController {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
             const oldGame = req.body;
-            yield database_1.default.query('UPDATE Usuarios set ? WHERE idUsuarios = ?', [req.body, id]);
+            yield database_1.default.query('UPDATE usuarios set ? WHERE idUsuarios = ?', [req.body, id]);
             res.json({ message: "The Usuario was Updated" });
         });
     }
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            yield database_1.default.query('DELETE FROM Usuarios WHERE idUsuarios = ?', [id]);
+            yield database_1.default.query('DELETE FROM usuarios WHERE idUsuarios = ?', [id]);
             res.json({ message: "The Usuarios was deleted" });
         });
     }

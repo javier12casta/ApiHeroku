@@ -16,14 +16,14 @@ const database_1 = __importDefault(require("../database"));
 class PermisosController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const permiso = yield database_1.default.query('SELECT * FROM Permisos');
+            const permiso = yield database_1.default.query('SELECT * FROM permisos');
             res.json(permiso);
         });
     }
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const games = yield database_1.default.query('SELECT * FROM Permisos WHERE idPermiso = ?', [id]);
+            const games = yield database_1.default.query('SELECT * FROM permisos WHERE idPermiso = ?', [id]);
             console.log(games.length);
             if (games.length > 0) {
                 return res.json(games[0]);
@@ -33,7 +33,7 @@ class PermisosController {
     }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const result = yield database_1.default.query('INSERT INTO Permisos set ?', [req.body]);
+            const result = yield database_1.default.query('INSERT INTO permisos set ?', [req.body]);
             res.json({ message: 'Permisos Saved' });
         });
     }
@@ -41,14 +41,14 @@ class PermisosController {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
             const oldGame = req.body;
-            yield database_1.default.query('UPDATE Permisos set ? WHERE idPermiso = ?', [req.body, id]);
+            yield database_1.default.query('UPDATE permisos set ? WHERE idPermiso = ?', [req.body, id]);
             res.json({ message: "The Permisos was Updated" });
         });
     }
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            yield database_1.default.query('DELETE FROM Permisos WHERE idPermiso = ?', [id]);
+            yield database_1.default.query('DELETE FROM permisos WHERE idPermiso = ?', [id]);
             res.json({ message: "The Permisos was deleted" });
         });
     }

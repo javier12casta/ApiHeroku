@@ -16,7 +16,7 @@ const database_1 = __importDefault(require("../database"));
 class PersonalController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const genero = yield database_1.default.query('SELECT * FROM PersonalICBF');
+            const genero = yield database_1.default.query('SELECT * FROM personalicbf');
             res.json(genero);
         });
     }
