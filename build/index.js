@@ -75,12 +75,22 @@ class Server {
             res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
             next();
           });
+          this.app.use(cors({
+            credentials: true,
+          }));
+
     }
     //Global  variables
     global() {
         this.app.use((res, req, next) => {
+            res.header("Access-Control-Allow-Origin", "*");
+            res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
             next();
         });
+
+        this.app.use(cors({
+            credentials: true,
+          }));
     }
     routes() {
         this.app.use("/", indexRoutes_1.default);
