@@ -88,9 +88,6 @@ class Server {
             next();
         });
 
-        this.app.use(cors({
-            credentials: true,
-          }));
     }
     routes() {
         this.app.use("/", indexRoutes_1.default);
