@@ -4,6 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
+const express_2 = require("cors");
 const centrosZController_1 = __importDefault(require("../controllers/centrosZController"));
 class CentrosZRoutes {
     constructor() {
